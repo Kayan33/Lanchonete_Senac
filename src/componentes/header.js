@@ -1,4 +1,6 @@
 import React from "react"
+import ("../style/global.css");
+import ("../style/header.css");
 function Header() {
     return (
         <div>
