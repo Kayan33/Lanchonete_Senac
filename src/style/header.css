@@ -11,12 +11,21 @@
 
 .flex-container {
   display: flex;
+
 }
 
 .flex-item {
-  margin: 0 30px;
   display: flex;
   align-items: center;
+}
+
+
+.flex-item a {
+  color: aliceblue;
+}
+
+.flex-item a {
+  margin: 0 25px;
 }
 
 

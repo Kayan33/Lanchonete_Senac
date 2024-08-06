@@ -2,8 +2,9 @@ import React from "react";
 import "../style/global.css";
 import "../style/header.css";
 import logo from '../img/logoShekina 1.png';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; 
-import { faCartShopping, faMobile, faRightToBracket, faTicket } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartShopping, faUser,} from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 function Header() {
     return (
@@ -11,23 +12,28 @@ function Header() {
             <img src={logo} alt="Logo Shekina" />
             <ul className="flex-container">
                 <li className="flex-item">
-                    <h3>Baixe APP</h3>
-                    <FontAwesomeIcon icon={faMobile} size="xl" />
-                    
+                    <Link to="Cadastrar">
+                    Baixe APP
+                    </Link>
                 </li>
                 <li className="flex-item">
-                    <h3>Cupom</h3>
-                    <FontAwesomeIcon icon={faTicket} size="xl" />
-                </li>
-                <li className="flex-item">
-                    <h3>Carrinho</h3>
-                    <FontAwesomeIcon icon={faCartShopping} size="xl" />
+                    <Link to="Cadastrar">
+                    Cupom
+                    </Link>
                 </li>
             </ul>
-            <div className="login">
-                <h3>Log in</h3>
-                <FontAwesomeIcon icon={faRightToBracket} size="xl" />
-            </div>
+            <ul className="flex-container">
+
+                <li className="flex-item">
+                    <FontAwesomeIcon icon={faCartShopping} size="xl" style={{ color: "#D5F5F9" }} />
+                </li>
+                <li className="flex-item">
+                    <Link to="Cadastrar">
+                        Cadastrar
+                    </Link>
+                    <FontAwesomeIcon icon={faUser} size="xl" />
+                </li>
+            </ul>
         </div>
     );
 }
