@@ -1,0 +1,22 @@
+
+.container {
+  background: #3D8AA7;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 50px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.flex-container {
+  display: flex;
+}
+
+.flex-item {
+  margin: 0 30px;
+  display: flex;
+  align-items: center;
+}
+
+

@@ -1,4 +1,5 @@
-import Header from "../componentes/header";
+import Header from "../components/header";
+
 
 function Cardapio() {
   return (
