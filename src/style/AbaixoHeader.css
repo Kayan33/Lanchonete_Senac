@@ -1,0 +1,39 @@
+.container-img {
+    width: 100%;
+    height: 50vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; 
+}
+
+@media (max-width: 600px) {
+    .container-img {
+        height: 25vh; 
+    }
+}
+
+.container-img h1 {
+    color: aliceblue;
+}
+
+.onda {
+    display: none; 
+}
+
+.container-img::before {
+    content: "";
+    background-image: url("../img/onda.svg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 10vh;
+    position: absolute;
+    bottom:-30px;
+    z-index: 1;
+}
+
