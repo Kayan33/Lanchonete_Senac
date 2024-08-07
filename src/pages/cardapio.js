@@ -8,6 +8,7 @@ function Cardapio() {
     <div>
       <Header/>
       <AbaixoHeader/>
+      <CategoriaBusca/>
     </div>
   );
 }
