@@ -28,7 +28,7 @@ function Header() {
                     <FontAwesomeIcon icon={faCartShopping} size="xl" style={{ color: "#D5F5F9" }} />
                 </li>
                 <li className="flex-item">
-                    <Link to="Cadastrar">
+                    <Link to="modal">
                         Cadastrar
                     </Link>
                     <FontAwesomeIcon icon={faUser} size="xl" />
