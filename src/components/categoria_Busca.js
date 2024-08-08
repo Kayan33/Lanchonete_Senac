@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import "../style/global.css";
 import "../style/CategoriaBusca.css";
 import { produtos } from '../data/produtos.js';
-
-
-
+import ProdutoModal from './ProdutoModal';
 
 const categoriaNomes = {
     1: "Lanches",
@@ -14,6 +12,7 @@ const categoriaNomes = {
 
 function CategoriaBusca() {
     const [termoBusca, setTermoBusca] = useState("");
+    const [produtoSelecionado, setProdutoSelecionado] = useState(null);
 
     const produtosFiltrados = termoBusca ? produtos.filter(produto => produto.categoria === parseInt(termoBusca)) : produtos;
 
@@ -32,7 +31,11 @@ function CategoriaBusca() {
                 </header>
                 <div className="produtos-grid">
                     {produtosCategoria.map(produto => (
-                        <article key={produto.id} className="produto-container">
+                        <article
+                            key={produto.id}
+                            className="produto-container"
+                            onClick={() => setProdutoSelecionado(produto)}
+                        >
                             <h3>{produto.nome}</h3>
                             <img src={produto.imagem} alt={produto.nome} />
                             <p>{produto.descricao}</p>
@@ -42,7 +45,6 @@ function CategoriaBusca() {
                 </div>
             </section>
         );
-        
     };
 
     return (
@@ -65,6 +67,13 @@ function CategoriaBusca() {
                 ? renderCategoria(parseInt(termoBusca))
                 : categorias.map(categoria => renderCategoria(categoria))
             }
+
+            {produtoSelecionado && (
+                <ProdutoModal
+                    produto={produtoSelecionado}
+                    closeModal={() => setProdutoSelecionado(null)}
+                />
+            )}
         </div>
     );
 }
