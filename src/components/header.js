@@ -3,7 +3,7 @@ import "../style/global.css";
 import "../style/header.css";
 import logo from '../img/logoShekina 1.png';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping, } from "@fortawesome/free-solid-svg-icons";
 import ModalLogar from '../components/modalLogar'; 
 
 function Header() {
