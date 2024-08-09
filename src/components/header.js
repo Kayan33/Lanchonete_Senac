@@ -26,7 +26,9 @@ function Header() {
                 </ul>
                 <ul className="flex-container">
                     <li className="flex-item">
-                        <FontAwesomeIcon icon={faCartShopping} size="xl" style={{ color: "#D5F5F9" }} />
+                       <a href="Carrinho">
+                       <FontAwesomeIcon icon={faCartShopping} size="xl" style={{ color: "#D5F5F9" }} />
+                        </a> 
                     </li>
                     <li className="flex-item">
                         <a href="#!" onClick={openModal} className="logar">
