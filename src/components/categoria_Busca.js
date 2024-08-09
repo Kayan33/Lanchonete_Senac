@@ -11,7 +11,6 @@ const categoriaNomes = {
 
 function CategoriaBusca() {
     const [termoBusca, setTermoBusca] = useState("");
-
     const [produtos, setProdutos] = useState([]);
 
     useEffect(() => {
@@ -32,6 +31,12 @@ function CategoriaBusca() {
         : produtos;
 
     const categorias = [...new Set(produtos.map(produto => produto.categoria))];
+
+    const adicionarAoCarrinho = (produto) => {
+        const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+        carrinho.push(produto);
+        localStorage.setItem('carrinho', JSON.stringify(carrinho));
+    };
 
     const renderCategoria = (categoria) => {
         const produtosCategoria = produtosFiltrados.filter(produto => produto.categoria === categoria);
@@ -54,7 +59,7 @@ function CategoriaBusca() {
                             <img src={produto.imagem} alt={produto.nome} />
                             <p>{produto.descricao}</p>
                             <p className="preco">R$ {produto.preco.toFixed(2)}</p>
-                            
+                            <button onClick={() => adicionarAoCarrinho(produto)}>Adicionar ao Carrinho</button>
                         </article>
                     ))}
                 </div>
