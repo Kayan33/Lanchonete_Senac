@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../style/global.css";
 import "../style/CategoriaBusca.css";
-import { produtos } from '../data/produtos.js';
-import ProdutoModal from './ProdutoModal';
+import { api } from '../data/provider';
 
 const categoriaNomes = {
     1: "Lanches",
@@ -12,9 +11,25 @@ const categoriaNomes = {
 
 function CategoriaBusca() {
     const [termoBusca, setTermoBusca] = useState("");
-    const [produtoSelecionado, setProdutoSelecionado] = useState(null);
 
-    const produtosFiltrados = termoBusca ? produtos.filter(produto => produto.categoria === parseInt(termoBusca)) : produtos;
+    const [produtos, setProdutos] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await api.get('/produtos');
+                setProdutos(response.data);
+            } catch (error) {
+                console.error("Erro ao buscar os produtos:", error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    const produtosFiltrados = termoBusca 
+        ? produtos.filter(produto => produto.categoria === parseInt(termoBusca)) 
+        : produtos;
 
     const categorias = [...new Set(produtos.map(produto => produto.categoria))];
 
@@ -34,12 +49,12 @@ function CategoriaBusca() {
                         <article
                             key={produto.id}
                             className="produto-container"
-                            onClick={() => setProdutoSelecionado(produto)}
                         >
                             <h3>{produto.nome}</h3>
                             <img src={produto.imagem} alt={produto.nome} />
                             <p>{produto.descricao}</p>
                             <p className="preco">R$ {produto.preco.toFixed(2)}</p>
+                            
                         </article>
                     ))}
                 </div>
@@ -68,12 +83,6 @@ function CategoriaBusca() {
                 : categorias.map(categoria => renderCategoria(categoria))
             }
 
-            {produtoSelecionado && (
-                <ProdutoModal
-                    produto={produtoSelecionado}
-                    closeModal={() => setProdutoSelecionado(null)}
-                />
-            )}
         </div>
     );
 }
