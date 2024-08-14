@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../style/global.css";
 import "../style/CategoriaBusca.css";
-import { api } from '../data/provider';
+import { produtos } from '../data/provider';
 
 const categoriaNomes = {
     1: "Lanches",
@@ -11,20 +11,9 @@ const categoriaNomes = {
 
 function CategoriaBusca() {
     const [termoBusca, setTermoBusca] = useState("");
-    const [produtos, setProdutos] = useState([]);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await api.get('/produtos');
-                setProdutos(response.data);
-            } catch (error) {
-                console.error("Erro ao buscar os produtos:", error);
-            }
-        };
 
-        fetchData();
-    }, []);
+    
 
     const produtosFiltrados = termoBusca 
         ? produtos.filter(produto => produto.categoria === parseInt(termoBusca)) 
@@ -33,10 +22,10 @@ function CategoriaBusca() {
     const categorias = [...new Set(produtos.map(produto => produto.categoria))];
 
     const adicionarAoCarrinho = (produto) => {
-        const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-        carrinho.push(produto);
-        localStorage.setItem('carrinho', JSON.stringify(carrinho));
-    };
+    const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+    carrinho.push(produto);
+    localStorage.setItem('carrinho', JSON.stringify(carrinho));
+};
 
     const renderCategoria = (categoria) => {
         const produtosCategoria = produtosFiltrados.filter(produto => produto.categoria === categoria);

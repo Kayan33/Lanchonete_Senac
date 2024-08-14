@@ -5,6 +5,7 @@ import "../style/carrinho.css";
 function Carrinho() {
     const [carrinho, setCarrinho] = useState([]);
 
+  
     useEffect(() => {
         const carregarCarrinho = () => {
             const produtosCarrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
@@ -12,11 +13,16 @@ function Carrinho() {
         };
 
         carregarCarrinho();
-    }, []);
+    }, []); 
 
-   
-  
+    
+    const removerDoCarrinho = (idProduto) => {
+        const carrinhoAtualizado = carrinho.filter(produto => produto.id !== idProduto);
+        setCarrinho(carrinhoAtualizado);
+        localStorage.setItem('carrinho', JSON.stringify(carrinhoAtualizado));
+    };
 
+    
     const finalizarCompra = () => {
         alert("Compra finalizada com sucesso!");
         localStorage.removeItem('carrinho');
@@ -35,7 +41,7 @@ function Carrinho() {
                             <h3>{produto.nome}</h3>
                             <img src={produto.imagem} alt={produto.nome} />
                             <p className="item-price">R$ {produto.preco.toFixed(2)}</p>
-                            <button >Remover</button>
+                            <button onClick={() => removerDoCarrinho(produto.id)}>Remover</button>
                         </article>
                     ))}
                 </div>
